@@ -1,0 +1,198 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>云计算检测系统后台</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'myadmin/bower_components/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/bower_components/font-awesome/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/bower_components/Ionicons/css/ionicons.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/dist/css/AdminLTE.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/dist/css/skins/skin-blue.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/local/css/google_fonts.css'%}">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="https://asnit.top" class="logo">
+            <span class="logo-mini"><b>云</b></span>
+            <span class="logo-lg"><b>云计算检测系统后台管理</b></span>
+        </a>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">切换导航</span>
+            </a>
+            <!-- 右栏菜单 -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- messages-menu 消息菜单: 样式可以在 dropdown.less 中找到 -->
+                    <li class="dropdown messages-menu">
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                            <i class="fa fa-envelope-o"></i>-->
+<!--                            <span class="label label-success"> </span> &lt;!&ndash;通知数量&ndash;&gt;-->
+<!--                        </a>-->
+                        <ul class="dropdown-menu">
+                            <li class="header"></li>
+                            <li>
+                                <!-- 内部菜单：包含消息 -->
+                                <ul class="menu">
+                                    <li><!-- start message 信息开始 -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <!-- User Image 使用图片 -->
+                                                <img src="{% static 'myadmin/dist/img/touxiang.png' %}"
+                                                     class="img-circle" alt="User Image">
+                                            </div>
+                                            <!-- 消息标题和时间 -->
+                                            <h4>
+                                                <small><i class="fa fa-clock-o"></i></small>
+                                            </h4>
+                                            <p></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+<!--                            <li class="footer"><a href="#">查看所有信息</a></li>-->
+                        </ul>
+                    </li>
+                    <li class="dropdown notifications-menu">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning"> </span> <!--通知数量-->
+                        </a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{% static 'myadmin/dist/img/touxiang.png'%}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{request.session.adminuser.nickname}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li class="user-header">
+                                <img src="{% static 'myadmin/dist/img/touxiang.png' %}" class="img-circle"
+                                     alt="User Image">
+                                <p>
+                                    {{request.session.adminuser.nickname}} - 管理员
+                                    <small>{{request.session.adminuser.create_at}}加入</small>
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="/myadmin/user/msg/1" class="btn btn-default btn-flat">个人信息</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{% url 'myadmin_logout' %}" class="btn btn-default btn-flat">退 出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{% static 'myadmin/dist/img/touxiang.png' %}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{request.session.adminuser.nickname}} . 管理员</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">主要导航</li>
+                <li><a href="{% url 'myadmin_index' %}"><i class="fa fa-home"></i> <span>首页</span></a>
+                </li>
+
+                <li><a href="{% url 'myadmin_user_index' 1 %}"><i class="fa fa-users"></i> <span>用户管理</span></a></li>
+                <li><a href="{% url 'myadmin_subject_index' 1 %}"><i class="fa fa-sitemap"></i> <span>赛题管理</span></a></li>
+                                <li><a href="{% url 'myadmin_log_index' 1 %}"><i class="fa fa-circle-o"></i> <span>日志管理</span></a></li>
+                        <li><a href="{% url 'myadmin_adminuser_index' 1 %}"><i class="fa fa-user"></i> <span>账号管理</span></a></li>
+                        <li><a href="{% url 'myadmin_time_index' %}"><i class="fa fa-gear"></i> <span>时间设置</span></a></li>
+                    </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        {% block main_body %}
+        {% endblock %}
+    </div>
+  <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            <!--餐饮管理平台-->
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2022 <a href="#">云道工作室版权所有 | AsNIT</a>.</strong> 版权所有
+    </footer>
+
+    <!-- 添加侧栏的背景。必须放置此处紧接在控制侧边栏之后 -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+
+<div id="edu-alert" class="modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+                <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+            </div>
+            <div class="modal-body small">
+                <p>[Message]</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+                <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edu-model-end -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="{% static 'myadmin/bower_components/jquery/dist/jquery.min.js'%}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'myadmin/bower_components/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'myadmin/dist/js/adminlte.min.js'%}"></script>
+
+<script src="{% static 'myadmin/dist/js/edu-modal-alert-confirm.js'%}"></script>
+
+
+
+<script type="text/javascript">
+    function doDel(url) {
+        Modal.confirm({
+            msg: "确定要删除吗？",
+            title: ' 信息提示',
+            btnok: '确定',
+            btncl: '取消'
+        }).on(function (e) {
+            if (e) {
+                window.location.href=url;
+                //Modal.alert({msg: "成功删除", title: ' 信息提示', btnok: '确定', btncl: '取消'});
+            }
+        });
+    }
+</script>
+</body>
+</html>

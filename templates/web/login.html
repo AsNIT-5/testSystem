@@ -1,0 +1,27 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'web/static/login.css' %}"/>
+</head>
+<body background="{% static 'web/static/381583.jpg' %}">
+<div id="login_frame">
+
+    <p id="image_logo"><img src="https://asnit.top/images/logo.png"></p>
+
+    <form action="{% url 'web_dologin' %}" method="post">
+        {% csrf_token %}
+        <p><label class="label_input">账号</label><input type="text" name="u" class="text_field" placeholder="账号"/></p>
+        <p><label class="label_input">密码</label><input type="password" name="p" class="text_field" placeholder="密码"/>
+        </p>
+
+        <div id="login_control">
+            <button type="submit" class="btn btn-primary btn-block btn-flat" id="btn_login">登录</button></br>
+            <p>{{ info }}</p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

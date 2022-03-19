@@ -1,0 +1,61 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算比赛检测系统</title>
+
+
+</head>
+<body>
+    <div class="main">
+<h1 style="font-size: 50px;">使用说明</h1>
+    <hr noshade="noshade">
+    <p>本程序仅作为云计算职业技能大赛的一个辅助程序</p></br>
+    <P style="color: red;">测试结果仅供参考!</P></br>
+    <P style="color: red;">测试结果仅供参考!</P></br>
+    <P style="color: red;">测试结果仅供参考!</P></br>
+        <p style="color: rebeccapurple">时间到后请勿提交</p>
+    <form action="{% url 'web_index' 1%}">
+        <div id="sub">
+        <input type="submit" id="btn_login" value="确定"><br/>
+        </div></form>
+    </div>
+
+
+<style>
+    body {
+    background-image: url("{% static 'web/static/381583.jpg' %}");
+    background-color: rgb(194, 186, 175);
+    background-size: 100%;
+
+}
+    .main{
+        width: 700px;
+        height: 900px;
+        margin:0 auto;
+        text-align: center;
+        font-size: 30px;
+    }
+    #btn_login {
+    font-size: 18px;
+    font-family: 宋体;
+ 
+    width: 130px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+ 
+    color: white;
+    background-color: #bd1c3f;
+    border-radius: 6px;
+    border: 0;
+ 
+
+}
+    
+</style>
+</body>
+</html>

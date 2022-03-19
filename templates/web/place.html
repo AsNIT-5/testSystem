@@ -1,0 +1,59 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算比赛检测系统</title>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{% static 'web/static/main.css' %}"/>
+
+
+</head>
+<body background="{% static 'web/static/381583.jpg' %}">
+<h1 align="center" style="font-size: 60px">选手排行榜</h1>
+<hr noshade="noshade">
+<div class="place">
+    <table class="tables">
+        <br>
+            <th style="font-size: 25px">名次</th>
+            <th style="font-size: 25px">选手</th>
+            <th style="font-size: 25px">分数</th>
+        </tr>
+        {%for auser in userlist%}
+
+        <tr><td style="font-size: 30px">{{ forloop.counter }}</td> <!--forloop.counter 自动输出编号-->
+            <td style="font-size: 30px">{{ auser.nickname }}</td>
+            <td style="font-size: 30px">{{ auser.score }}</td>
+        </tr>
+         {%endfor%}
+
+
+    </table>
+
+</div>
+</br>
+<button type="submit" id="btn_login" onclick="javascript:window.history.go(-1)">返回<br/></button>
+<style>
+table {margin: auto;}
+body{text-align: center;}
+#btn_login {
+    font-size: 18px;
+    width: 130px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #0b3e6f;
+    background-color: #b9def1;
+    border-radius: 6px;
+    border: 0;
+
+
+}
+
+</style>
+
+</body>
+</html>

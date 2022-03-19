@@ -1,0 +1,139 @@
+{% extends "myadmin/base.html" %}
+
+{% block main_body %}
+
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+    <h1>
+      赛题管理
+      <small>云计算检测系统后台管理</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'myadmin_index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+      <li class="active">赛题管理</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content container-fluid">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+              <h2 class="box-title"> <span class="glyphicon glyphicon-calendar" aria-hidden="true">添加赛题</h2>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form class="form-horizontal" action="{% url 'myadmin_subject_insert' %}" method="post">
+            {% csrf_token %}
+            <div class="box-body">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">标题：</label>
+
+                <div class="col-sm-4">
+                  <input type="text" name="title" class="form-control" id="inputEmail3" placeholder="标题">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">内容：</label>
+
+                <div class="col-sm-4">
+                  <textarea  name="content" class="form-control" id="inputEmail3" placeholder="内容"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">分数：</label>
+
+                <div class="col-sm-4">
+                  <input type="text" name="score" class="form-control" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">命令：</label>
+
+                <div class="col-sm-4">
+                  <textarea name="command" class="form-control" ></textarea>
+                </div>
+              </div>
+               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准1：</label>
+
+                <div class="col-sm-4">
+                  <input name="result1" class="form-control" value="{{subject.result1}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准2：</label>
+
+                <div class="col-sm-4">
+                  <input name="result2" class="form-control" value="{{subject.result2}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准3：</label>
+
+                <div class="col-sm-4">
+                  <input name="result3" class="form-control" value="{{subject.result3}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准4：</label>
+
+                <div class="col-sm-4">
+                  <input name="result4" class="form-control" value="{{subject.result4}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准5：</label>
+
+                <div class="col-sm-4">
+                  <input name="result5" class="form-control" value="{{subject.result5}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准6：</label>
+
+                <div class="col-sm-4">
+                  <input name="result6" class="form-control" value="{{subject.result6}}"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准7：</label>
+
+                <div class="col-sm-4">
+                  <input name="result7" class="form-control" value="{{subject.result7}}"/>
+                </div>
+              </div>
+                       <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准8：</label>
+
+                <div class="col-sm-4">
+                  <input name="result8" class="form-control" value="{{subject.result8}}"/>
+                </div>
+              </div>
+                       <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">检测标准9：</label>
+
+                <div class="col-sm-4">
+                  <input name="result9" class="form-control" value="{{subject.result9}}"/>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">提交</button> &nbsp;
+                 <button type="button" class="btn btn-default" onclick="javascript:window.history.go(-1)">返回</button>
+              <div class="col-sm-offset-2 col-sm-10">
+            </div>
+            <!-- /.box-footer -->
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+{% endblock %}

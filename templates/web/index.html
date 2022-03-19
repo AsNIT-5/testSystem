@@ -1,0 +1,131 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算比赛检测系统</title>
+    <link rel="stylesheet" href="{% static 'myadmin/dist/css/AdminLTE.min.css'%}">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{% static 'web/static/main.css' %}"/>
+
+
+</head>
+<body background="{% static 'web/static/521.jpg' %}">
+<div class="admin">
+    <!--首页logo-->
+    <div class="logo"><img src="https://asnit.top/static/upload/2021/12/11/202112114298.png" width="300px">
+
+    </div>
+    <!--用户默认头像-->
+    <div class="zong"> 当前用户：{{request.session.user.nickname}} &emsp;总分：{{request.session.user.score}}</div>
+    <div class="top-admin">
+        <div class="touxiang"><img src="{% static 'web/static/default.png' %}" width="100" height="100"></div>
+        <!--登陆与退出-->
+        <div class="d">
+            <span id="p"><a href="{% url 'web_place' %}">排名</a></span>
+        </div>
+        <div class="t"><span id="t"><a href="{% url 'web_logout' %}">退出</a> </span></div>
+    </div>
+
+</div>
+<hr noshade="noshade">
+<div class="view">
+    <section class="content container-fluid">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th style="font-size: 20px">标题</th>
+                                <th style="font-size: 20px">题目及要求</th>
+                                <th style="font-size: 18px">分数</th>
+                            </tr>
+                            {%for c in content%}
+
+                            <tr>
+                                <td style="font-size: 30px">{{ c.title }}</td>
+                                <td style="font-size: 30px">{{ c.content }}</td>
+                                <td style="font-size: 30px">{{ c.score }}</td>
+                            </tr>
+                            {%endfor%}
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+    <br/><br/><br/><br/>
+    <!--提交表单-->
+    <div class="button">
+        <form action="{% url 'main_index' %}" method="post">
+            {% csrf_token %}
+            <p style="color:rgba(255,0,0,0.92)">{{ request.session.data }}</p>
+            <input type="hidden" name="page_index" value="{{pIndex}}"/>
+            <input type="hidden" name="user_id" value="{{request.session.user.id}}"/>
+            <input type="hidden" name="p_score" value="{{request.session.user.score}}"/>
+            <p><label class="label_input">主机</label><input type="text" name="ip" class="text_field"/></p>
+            <p><label class="label_input">用户</label><input type="text" name="host_user" class="text_field"/></p>
+            <p><label class="label_input">密码</label><input type="password" name="host_pass" class="text_field"/></p>
+            <div id="sub">
+                <input type="submit" id="btn_login" value="提交"><br/><br/>
+                <a href="{% url 'web_index' pIndex|add:1%}" id="btn_login">下一题<br/></a></div>
+    </div>
+    </form>
+
+    {% for t in time %}
+    <button class="alltime">
+        <div id="alltime" style="color:blue"><b>
+            <span class="hour"></span>
+            <span class="minutes"></span>
+            <span class="second"></span>
+        </b></div>
+    </button>
+    <script type="text/javascript">
+
+        let hour = document.querySelector('.hour');
+        let minutes = document.querySelector('.minutes');
+        let second = document.querySelector('.second');
+        let endTime = +new Date("{{ t.time|date:'Y-m-d H:i:s'}}");
+        getTime();
+        // 设置定时器每隔1秒调用一次
+        setInterval(getTime, 1000);
+
+        function getTime() {
+            let startTime = +new Date();
+            let timeInterval = (endTime - startTime) / 1000;
+            if (timeInterval < 0) {
+                alert("时间到");
+                alert.accept();
+                return false;
+            }
+            let h = parseInt(timeInterval / 60 / 60 % 24);
+            h = h < 10 ? +h + '时' : h;
+            hour.innerHTML = h;
+            let m = parseInt(timeInterval / 60 % 60);
+            m = m < 10 ? +m + '分' : m;
+            minutes.innerHTML = m;
+            let s = parseInt(timeInterval % 60);
+            s = s < 10 ? +s + '秒' : s;
+            second.innerHTML = s;
+        }
+
+    </script>
+    <style>
+        .alltime {
+            bbackground-color: rgba(240, 255, 255, 0.5);
+            font-size: 15px;
+
+        }
+    </style>
+    {%endfor%}
+</body>
+</html>
